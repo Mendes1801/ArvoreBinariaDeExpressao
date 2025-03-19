@@ -4,7 +4,7 @@ import javax.imageio.IIOException;
 
 public class main {
     
-    public static void main(String[] args) throws IIOException {
+    public static void main(String[] args) throws IIOException, Exception {
 
        Scanner ler = new Scanner(System.in);
        Integer input = null;

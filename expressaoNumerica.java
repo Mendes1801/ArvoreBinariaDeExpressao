@@ -1,10 +1,10 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.imageio.IIOException;
 
 public class expressaoNumerica {
 
     private String expressaoNumerica;
-    private ArrayList<Object> expressaoList;
+    private LinkedList<Object> expressaoList;
 
     expressaoNumerica(String expressaoNumerica) throws Exception{
         setExpressaoNumerica(expressaoNumerica);
@@ -16,8 +16,8 @@ public class expressaoNumerica {
 
     public boolean validarExpressao(String expressao) throws IIOException, Exception{
 
-        ArrayList<Character> pilhaParenteses = new ArrayList<>();
-        ArrayList<Character> expressaoList = new ArrayList<>();
+        LinkedList<Character> pilhaParenteses = new LinkedList<>();
+        LinkedList<Character> expressaoList = new LinkedList<>();
 
         //Transforma a expressao em um vetor de Character
         for(int i=0; i<expressao.length();i++){
@@ -90,9 +90,9 @@ public class expressaoNumerica {
 
     }
 
-    public ArrayList<Object> criarExpressaoList(String expressaoString){
+    public LinkedList<Object> criarExpressaoList(String expressaoString){
 
-        ArrayList<Object> entradaArrayList = new ArrayList<>();
+        LinkedList<Object> entradaArrayList = new LinkedList<>();
         StringBuilder entradaPilha = new StringBuilder();
 
         for(int i =0; i < expressaoString.length(); i++){
@@ -103,14 +103,14 @@ public class expressaoNumerica {
                 entradaPilha.append(c);
             } 
                 else{
-                    if(!entradaPilha.isEmpty()){
+                    if(entradaPilha.length()>0){
                         entradaArrayList.addLast(Float.parseFloat(entradaPilha.toString()));
                         entradaPilha = new StringBuilder();
                     }
                     entradaArrayList.addLast(c);
                 }
         }
-        if(!entradaPilha.isEmpty()) entradaArrayList.addLast(Float.parseFloat(entradaPilha.toString()));
+        if(entradaPilha.length()>0) entradaArrayList.addLast(Float.parseFloat(entradaPilha.toString()));
 
         return entradaArrayList;
     }
@@ -119,7 +119,7 @@ public class expressaoNumerica {
         return expressaoNumerica;
     }
 
-    public ArrayList<Object> getExpressaoList() {
+    public LinkedList<Object> getExpressaoList() {
         return expressaoList;
     }
 
@@ -139,10 +139,10 @@ public class expressaoNumerica {
         }
     }
 
-    public ArrayList<Object> transformaInfixa(){
+    public LinkedList<Object> transformaInfixa(){
 
-        ArrayList<Object> saida = new ArrayList<>();
-        ArrayList<Character> operadores = new ArrayList<>();
+        LinkedList<Object> saida = new LinkedList<>();
+        LinkedList<Character> operadores = new LinkedList<>();
 
         // Converte a expressão para notação polonesa reversa
         for (int i = 0; i < expressaoList.size(); i++) {

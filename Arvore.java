@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Arvore {
     private No raiz;
@@ -18,7 +18,7 @@ public class Arvore {
     }
 
 
-    private No inserir(ArrayList<Object> expPosFixa) {
+    private No inserir(LinkedList<Object> expPosFixa) {
         
             //Essa funçã é recursiva
             /* Ela verifica se o node é um OPERADOR ou OPERANDO
