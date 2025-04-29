@@ -6,7 +6,6 @@
 //Nesse Projeto o modelo de arvore foi reutilizado do visto em aula.
 // A versão utilizada foi a disponibilizada no MOODLE da materia de estrutura de dados 2
 
-
 import java.util.LinkedList;
 
 public class Arvore {
@@ -109,6 +108,7 @@ public class Arvore {
     }
 
     public Float calcular(){
+        //Utilizando uma função sobrescrita dos nós (ideia de polimorfismo)
        return raiz.visitar(); 
     }
 }

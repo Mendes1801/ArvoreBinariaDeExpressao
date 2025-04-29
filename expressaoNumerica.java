@@ -6,6 +6,13 @@
 import java.util.LinkedList;
 import javax.imageio.IIOException;
 
+
+/*
+ * CLASSE DE EXPRESSAO NUMERICA
+ * É UTILIZADA PARA CRIAR UMA EXPRESSAO NUMERICA E VERIFICAR SE ELA ESTA CORRETA
+ * A CLASSE UTILIZA A IDEA DE HERANÇA PARA ARMAZENAR OS OPERADORES E NUMEROS EM UMA MESMA LISTA
+ * A CLASSE TAMBÉM ARMAZENA UMA LISTA DE NUMEROS E OPERADORES EM NOTACAO POLONESA REVERSA
+ */
 public class expressaoNumerica {
 
     private String expressaoNumerica;
@@ -18,18 +25,23 @@ public class expressaoNumerica {
     expressaoNumerica(){
     }
 
-
+    //Essa funcao verifica se a expressao esta correta
+    //Retorna true se estiver correta e false se nao
+    //É utilizado a idea de herança para armazenar os operadores e numeros em uma mesma lista
+    //O algoritimo utiliza uma pilha para verificar a ordem dos parenteses
     public boolean validarExpressao(String expressao) throws IIOException, Exception{
 
         LinkedList<Character> pilhaParenteses = new LinkedList<>();
         LinkedList<Character> expressaoList = new LinkedList<>();
+
+        expressao = expressao.strip().trim().replaceAll(" ", "");
 
         //Transforma a expressao em um vetor de Character
         for(int i=0; i<expressao.length();i++){
             expressaoList.addLast(expressao.charAt(i));
         }
 
-        //valida a ordem dos parenteses
+        //valida a ordem dos parenteses utilizando uma pilha
         for(int i =0; i < expressaoList.size();i++){
         Character atual = expressaoList.get(i);
 
@@ -86,7 +98,7 @@ public class expressaoNumerica {
 
     public void setExpressaoNumerica(String expressaoNumerica) throws Exception {
 
-        expressaoNumerica = expressaoNumerica.strip().trim().replaceAll(" ", "");
+        expressaoNumerica = expressaoNumerica.replaceAll(" ", "");
 
         if(validarExpressao(expressaoNumerica)){
             this.expressaoNumerica = expressaoNumerica;
@@ -95,7 +107,11 @@ public class expressaoNumerica {
 
     }
 
-    public LinkedList<Object> criarExpressaoList(String expressaoString){
+
+    //Essa funcao transforma uma expressao em uma lista de numeros e operadores utilizando a ideia de heranca de classes
+    //Retorna uma lista de numeros e operadores
+    //O algoritimo utiliza a tabela ascii para identificar os numeros e os operadores
+    private LinkedList<Object> criarExpressaoList(String expressaoString){
 
         LinkedList<Object> entradaArrayList = new LinkedList<>();
         StringBuilder entradaPilha = new StringBuilder();
@@ -128,6 +144,10 @@ public class expressaoNumerica {
         return expressaoList;
     }
 
+
+    //Essa expressão verifica a ordem de prioridade dos operadores
+    //Retorna a prioridade do operador
+    //O algoritimo utiliza switch case para cada caso de operador
     private int prioridade(Character operador){
         
         switch (operador) {
@@ -144,6 +164,9 @@ public class expressaoNumerica {
         }
     }
 
+
+    //Essa função transforma uma expressão em uma expressão em notação polonesa reversa
+    //Retorma uma lista de operadores e numeros em notação polonesa reversa
     public LinkedList<Object> transformaInfixa(){
 
         LinkedList<Object> saida = new LinkedList<>();

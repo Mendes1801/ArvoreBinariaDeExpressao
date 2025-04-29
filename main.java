@@ -12,7 +12,7 @@ public class main {
     public static void main(String[] args) throws IIOException, Exception {
 
        Scanner ler = new Scanner(System.in);
-       Integer input = null;
+       String input = null;
        expressaoNumerica expressao = null;
        Arvore arvoreDeExpressao = null;
         
@@ -29,18 +29,19 @@ public class main {
             System.out.println(menu);
 
             try {
-                input = ler.nextInt();                 
+                input = ler.next();                 
             } catch (Exception e) {
-                input = 0;
+                input = "0";
                 ler.next();
             }
             
-            switch (input) {
+            switch (Integer.parseInt(input)) {
                 case 1:
 
                 try {
                     System.out.printf("Insira a expressão: ");
-                    String entrada = ler.next();
+                    ler.nextLine();
+                    String entrada = ler.nextLine();
                     expressao = new expressaoNumerica(entrada);
                     
                 } catch (Exception e) {
